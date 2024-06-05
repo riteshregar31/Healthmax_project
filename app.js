@@ -26,11 +26,11 @@ const session = require('express-session');
 const MongoDBStore = require("connect-mongo")(session);
 
 
-// const dburl=process.env.DB_URL
+const dburl=process.env.DB_URL
 
 
 
-const dburl='mongodb://127.0.0.1:27017/hrecord'
+// const dburl='mongodb://127.0.0.1:27017/hrecord'
 main().catch(err => console.log(err));
 
 
