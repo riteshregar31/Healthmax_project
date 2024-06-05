@@ -138,7 +138,7 @@ app.post('/register', catchAsync(async (req, res, next) => {
       const registeredUser = await User.register(user, password);
       req.login(registeredUser, err => {
           if (err) return next(err);
-          req.flash('success', 'Account created ,kindly fill the information in below form,you can fill approximate data later you will be able to update it');
+          req.flash('success', 'Account created !!!');
           res.redirect('/login');
       })
   } catch (e) {
