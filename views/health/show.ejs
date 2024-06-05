@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthmax</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="/stylesheets/graph.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column vh-100 " style="margin-bottom: 0px; margin-right: -0px; overflow-x: hidden ;background-color: #f6fafa;">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Healthmax</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <a class="nav-link " style="text-align: right;" href="/userinfo/<%=hr._id%>/editp">Edit_Profile</a>
+          <a class="nav-link " style="text-align: right;" href="/logout">Logout</a>
+          
+
+        </ul>
+      
+       
+      </div>
+    </div>
+  </nav>
+  <main>
+    <%-include('../partials/flash') %>
+    
+
+<div class="container border border-light">
+  <div class="row">
+    <div class="col" style="font-size: 20px;" >
+      Name : <%=hr.Name%>
+    </div>
+    <div class="col-sm-4"  style="font-size: 20px;">
+      Age : <%=hr.Age%>yr
+    </div>
+ 
+ </div>
+ <div class="row">
+    <div class="col" style="font-size: 20px;">
+      Height:<span class=" sht" style="font-size: 20px;"><%=hr.Height%></span>kg
+    </div>
+    <div class="col-sm-4" style="font-size: 20px;">
+      Weight: <span  class=" swt" style="font-size: 20px;"><%=hr.Weight%></span>kg
+    </div>
+
+  
+  </div>
+</div>
+
+
+<hr class="bg-danger border-2 border-top border-primary" />
+<br>
+
+
+<br>
+<h4>Your Prescriptions:-</h4>
+<div class="row">
+ 
+  
+  <div class="card boarder border-3" style="width: 20rem; margin-left: 40px;background-color: #fefefe;">
+                   
+    <h6 class="card-title" style="text-align: center;">  Prescription_image-1</h6>
+   
+    <div class="card-body">
+      
+      <% hr.image1.forEach((img, i) => {  %>
+      <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+        
+          <img src="<%= img.url%>" class="d-block w-100" alt="">
+          <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
+          <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editif">edit</a>
+        </div>
+          
+      <% }) %>
+      <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editif">edit</a>
+  </div>    
+  
+                   
+                    </div> 
+  <div class="card boarder border-3" style="width: 20rem; margin-left: 40px;background-color: #fefefe;">
+                   
+    <h6 class="card-title" style="text-align: center;">  Prescription_image-2</h6>
+  <div class="card-body">
+    <% hr.image2.forEach((img, i) => {  %>
+    <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+        <img src="<%= img.url%>" class="d-block w-100" alt="">
+        <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
+        <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editis">edit</a>
+    </div>
+    <% }) %>
+    <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editis">edit</a>
+  </div>    
+  
+                 
+                  </div>                   
+  
+  <div class="card boarder border-3" style="width: 20rem; margin-left: 40px;background-color: #fefefe;">
+                   
+    <h6 class="card-title" style="text-align: center;">  Prescription_iamge-3</h6>
+              
+  <div class="card-body">
+    
+  
+    <% hr.image3.forEach((img, i) => {  %>
+    <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+      
+      
+        <img src="<%= img.url%>" class="d-block w-100" alt="">
+        <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
+        <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editit">edit</a>
+    </div>
+    
+  
+    <% }) %>
+    <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editit">edit</a>
+  </div>    
+  
+  
+                 
+                  </div>
+ 
+  </div>
+  <br>
+
+  
+<br>
+<br>
+<h4>Weight-time graph</h4>
+  <div id="curve_chart" style=" font-weight: 550; font-family: Arial, Helvetica, sans-serif; background-color: #fefefe;" class="chart"></div>
+ 
+  
+  <br>
+  <br>
+  <h4>Height-time graph</h4>
+  <div id="curve_chart2" style=" font-weight: 550; font-family: Arial, Helvetica, sans-serif; background-color: #fefefe; "  class="chart"></div>
+  
+<br>
+
+
+
+<h4>Add Height and Weight</h4>
+
+<div class=" collpase col-md-4 col-md-offset-4" id="collapseadd">
+  <div class="card card-body">
+    <form action="/userinfo/<%=hr._id%>/inform" method="POST" class="needs-validation " novalidate>
+      <div class="mb-3">
+          <label class="form-label" for="weight">weight</label>
+          <input class="form-control" type="number" min="2" max="650" name="infor[weight]" id="weight" required>
+      </div>
+      <div class="mb-3">
+          <label class="form-label" for="height">height</label>
+          <input class="form-control" type="number" min="20" max="250" name="infor[height]" id="height" required>
+      </div>
+      <div class="mb-3">
+          <label class="form-label" for="date">date</label>
+          <input class="form-control" type="date" name="infor[date]" id="date" required>
+      </div>
+    
+      <button class="btn btn-success">Submit</button>
+  </form>
+  </div>
+  
+  
+
+</div>
+<p>
+  <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapseadd" aria-expanded="false" aria-controls="collapseadd">
+   Hide/Show form
+  </button>
+</p>
+<br>
+<h4>Your Previous data:-</h4>
+<p>
+  <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#collapsee" aria-expanded="false" aria-controls="collapsee">
+   Show Data
+  </button>
+</p>
+
+<div class="card mb-5 border  collapse " id="collapsee">
+
+  <% for(let dd of hr.info) { %>
+      <div class="card mb-1  " >
+          <div class="card-body border border-light " >
+              <span class="card-text" style="font-size: 20px;">weight:</span>
+              <span class="card-text wt" ><%=dd.weight %></span>
+              <br>
+              <span class="card-text" style="font-size: 20px;">height:</span>
+              <span class="card-text ht"><%=dd.height %></span>
+              <br>
+              <span class="card-text" style="font-size: 20px;">date:</span>
+              <span class="card-text dt"><%=dd.date.toISOString().slice(0, 10) %></span>
+             
+              <form action="/userinfo/<%=hr._id%>/info/<%=dd._id%>?_method=DELETE" method="POST">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+          </div>
+      </div>
+      <% } %>
+</div>
+
+ 
+<script src="/clientvalidate.js">
+
+
+</script> 
+
+<script type="text/javascript">
+google.charts.load('current', {'packages':['line']});
+google.charts.setOnLoadCallback(drawChart);
+let we=[];
+   let he=[];
+   let de=[];
+   var seedwlist=document.querySelectorAll(".swt")
+
+   var wlist=document.querySelectorAll(".wt")
+   var hlist=document.querySelectorAll(".ht")
+   var dlist=document.querySelectorAll(".dt")
+   let final=[["date","weight(kg)"]];
+   let temp1=[[]];
+
+
+
+   for(var value of seedwlist) { 
+we.push(parseInt(value.innerHTML)); 
+de.push(new Date().toISOString().slice(0, 10));
+}
+   const d=new Date().toISOString().slice(0, 10);
+
+   for(var value of wlist) { 
+we.push(parseInt(value.innerHTML)); 
+}
+
+
+
+
+for(var value of hlist) { 
+he.push(parseInt(value.innerHTML)); 
+}
+
+
+ 
+  for(var value of dlist) { 
+    
+de.push(value.innerHTML); 
+
+
+}
+
+
+for(let i=0;i<de.length;i++){
+
+temp1.push([de[i],we[i]]);
+
+
+}
+temp1.sort();
+for(let i=0;i<temp1.length;i++){
+if(temp1[i].length==0){
+  continue;
+}
+final.push(temp1[i]);
+}
+
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable(final);
+
+
+  var options = {
+      chart: {
+        title: '',
+        subtitle: '*weight in kg'
+      },
+    };
+  var chart =  new google.charts.Line(document.getElementById('curve_chart'));
+
+  chart.draw(data, options);
+}
+
+$(window).resize(function(){
+  drawChart();
+
+});
+
+</script>
+
+<br>
+<script type="text/javascript" >
+  google.charts.load('current', {'packages':['line']});
+  google.charts.setOnLoadCallback(drawChart);
+ 
+     let he1=[];
+     let de1=[];
+     var seedhlist=document.querySelectorAll(".sht")
+     
+     var hlist=document.querySelectorAll(".ht")
+     var dlist=document.querySelectorAll(".dt")
+     
+     let final3=[["date","height(cm)"]];
+ let temp=[[]];
+
+
+for(var value of seedhlist) { 
+he1.push(parseInt(value.innerHTML)); 
+de1.push(new Date().toISOString().slice(0, 10));
+}
+for(var value of hlist) { 
+  he1.push(parseInt(value.innerHTML)); 
+}
+
+ 
+    for(var value of dlist) { 
+    
+  de1.push(value.innerHTML); 
+
+}
+
+for(let i=0;i<he1.length;i++){
+
+temp.push([de1[i],he1[i]]);
+
+
+}
+temp.sort();
+for(let i=0;i<temp.length;i++){
+if(temp[i].length==0){
+  continue;
+}
+final3.push(temp[i]);
+}
+
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable(final3);
+
+  
+    var options = {
+      chart: {
+        title: '',
+        subtitle: '*height in cm'
+      },
+      colors: ['red']
+    };
+    var chart = new google.charts.Line(document.getElementById('curve_chart2'));
+
+    chart.draw(data, options);
+  }
+
+
+
+  $(window).resize(function(){
+  drawChart();
+
+});
+
+
+  
+</script>
+  
+  </main>
+  
+  <%-include('../partials/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

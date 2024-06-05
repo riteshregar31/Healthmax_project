@@ -1,0 +1,66 @@
+<% layout('layouts/boilerplate') %>
+
+    <div class="row">
+        
+        <h1 class="text-center">EDITING</h1>
+        
+            <div class="col-6 offset-3 ">
+                <!-- <div class="card  " style="width: 60rem;">
+                
+                
+                </div> -->
+                <form action="/userinfo/<%=hr._id%>/i1?_method=PUT" method="POST" novalidate class="needs-validation"  enctype="multipart/form-data">
+                   
+                    <div class="card" style="width: 33rem;">
+                   
+   
+              
+                        <div class="card-body">
+                     
+                      <!-- <script>console.log(hr.image1)</script> -->
+                          <% hr.image1.forEach((img, i) => {  %>
+                          <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                            <!-- <p><%=img.filename%></p> -->
+                            
+                           
+                              <img src="<%= img.url%>" class="d-block w-50" alt="">
+                              <div class="form-check-inline">
+                                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                            </div>
+                              <label for="image-<%=i%>" style="color: red;">Delete?</label>
+                          </div>
+                          
+                        
+                          <% }) %>
+                      
+                      </div>    
+                      
+                      
+                                       
+                                        </div>
+                                        
+                                        
+                                        <% if(!hr.image1.length){ %>
+                                            <div class="form-file custom-file">
+                                           <input type="file" class="form-file-input" id="image" name="image" >
+                                           <label class="form-file-label" for="image">
+                                               <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                                               <span class="form-file-button">Browse</span>
+                                           </label>
+                                       </div>
+                                         
+                                        <% } %>
+                   
+                    <div class="mb-3">
+                        <button class="btn btn-success">update data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+<script src="/clientvalidate.js">
+
+
+</script>    

@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate') %>
+    
+    <div class="row">
+        
+        <h1 class="text-center">EDIT PROFILE</h1>
+        
+            <div class="col-6 offset-3 ">
+                <!-- <div class="card  " style="width: 60rem;">
+                
+                
+                </div> -->
+                <form action="/userinfo/<%=hr._id%>?_method=PUT" method="POST" novalidate class="needs-validation">
+                    <div class="mb-3">
+                        <label class="form-label" for="Name">Name</label>
+                        <input class="form-control"  type="text" id="Name" name="hr[Name]" value="<%=hr.Name %>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="Age">Age</label>
+                        <input class="form-control" type="number" id="Age" name="hr[Age]" value="<%= hr.Age%>" required min="1" max="130"
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="height">Height</label>
+                        <input class="form-control" type="number" id="height" name="hr[Height]" value="<%= hr.Height%>" required min="60" max="260">
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label"for="weight">Weight</label>
+                        <input class="form-control" type="number" id="weight" name="hr[Weight]" value="<%= hr.Weight%>" required min="2" max="640">
+                    </div>
+                   
+                   
+                    <div class="mb-3">
+                        <button class="btn btn-success">update data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
+    </div>
+<script src="/clientvalidate.js">
+
+
+</script>    
