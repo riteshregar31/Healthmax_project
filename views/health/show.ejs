@@ -65,16 +65,16 @@
 <div class="row">
  
   
-  <div class="card boarder border-3" style="width: 20rem; margin-left: 40px;background-color: #fefefe;">
+  <div class="card boarder border-3" style="width: 20rem;  margin-left: 40px;background-color: #fefefe;">
                    
     <h6 class="card-title" style="text-align: center;">  Prescription_image-1</h6>
    
-    <div class="card-body">
+    <div class="card-body" style="height: 15rem;">
       
       <% hr.image1.forEach((img, i) => {  %>
       <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
         
-          <img src="<%= img.url%>" class="d-block w-100" alt="">
+          <img src="<%= img.url%>" style="height: 10rem; width: 7rem;" class="d-block w-100" alt="">
           <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
           <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editif">edit</a>
         </div>
@@ -91,7 +91,7 @@
   <div class="card-body">
     <% hr.image2.forEach((img, i) => {  %>
     <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-        <img src="<%= img.url%>" class="d-block w-100" alt="">
+      <img src="<%= img.url%>" style="height: 10rem; width: 7rem;" class="d-block w-100" alt="">
         <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
         <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editis">edit</a>
     </div>
@@ -113,7 +113,7 @@
     <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
       
       
-        <img src="<%= img.url%>" class="d-block w-100" alt="">
+      <img src="<%= img.url%>" style="height: 10rem; width: 7rem;" class="d-block w-100" alt="">
         <a class="btn btn-primary" href="<%= img.url%>" role="button">View</a>
         <a class="card-link btn btn-info" style="width: 5rem; " href="/userinfo/<%=hr._id%>/editit">edit</a>
     </div>
