@@ -2,7 +2,7 @@
     
     <div class="row">
         
-        <h1 class="text-center">add/remove image</h1>
+        <h1 class="text-align">add/remove image:-</h1>
         
             <div class="col-6 offset-3 ">
                 <!-- <div class="card  " style="width: 60rem;">
@@ -11,7 +11,7 @@
                 </div> -->
                 <form action="/userinfo/<%=hr._id%>/i2?_method=PUT" method="POST" novalidate class="needs-validation"  enctype="multipart/form-data">
                   
-                    <div class="card" style="width: 33rem;">
+                    <div class="card" style="width: 18rem; height: 20rem;">
                    
    
               
@@ -20,8 +20,8 @@
                       
                           <% hr.image2.forEach((img, i) => {  %>
                           <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                            <!-- <p><%=img.filename%></p> -->
-                            <img src="<%= img.url%>" class="d-block w-50" alt="">
+                          
+                            <img src="<%= img.url%>" class="d-block w-100" alt="" style="height: 15rem;">
                             <div class="form-check-inline">
                                 <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
                             </div>
