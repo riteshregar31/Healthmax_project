@@ -167,7 +167,12 @@ const hr = new Healthmax(req.body.hr);
   res.redirect(`/userinfo/${hr._id}`)
 }))
 
+app.get('/getprofile',(async(req,res)=>{
+  const hr= await Healthmax.findOne({"author":req.user._id})
 
+  res.redirect(`/userinfo/${hr._id}`)
+
+}))
 
 app.get('/userinfo/:id',isLoggedIn, isAuthor, catchAsync(async(req,res)=>{
    const {id}=req.params;
