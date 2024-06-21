@@ -168,9 +168,20 @@ const hr = new Healthmax(req.body.hr);
 }))
 
 app.get('/getprofile',(async(req,res)=>{
-  const hr= await Healthmax.findOne({"author":req.user._id})
 
-  res.redirect(`/userinfo/${hr._id}`)
+  const hr= await Healthmax.findOne({"author":req.user._id})
+  if(hr!=null){
+ 
+   res.redirect(`/userinfo/${hr.id}`);
+
+  }
+  else{
+ req.flash('success', 'enter your information ')
+   // console.log('i did not have author')
+   const redirectUrl='/newuserinfo';
+     res.redirect(redirectUrl);
+  }
+ 
 
 }))
 
